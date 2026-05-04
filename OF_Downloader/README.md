@@ -126,3 +126,22 @@ Any kind of positive contribution is welcome! Please help the project improve by
 
 ## Disclaimer
 OnlyFans is a registered trademark of Fenix International Ltd. This Chrome extension isn't affiliated with, sponsored by, or endorsed by Fenix International Ltd.
+## 🔐 Local License (Personal/Dev)
+If you use this build locally, you can enable a local development license key in Chrome DevTools:
+
+```js
+chrome.storage.local.set({
+  ofdlLocalLicense: {
+    enabled: true,
+    key: "MY-LOCAL-DEV-KEY"
+  }
+});
+```
+
+To disable it:
+
+```js
+chrome.storage.local.remove("ofdlLocalLicense");
+```
+
+This local license is only stored on your own browser profile (`chrome.storage.local`).
