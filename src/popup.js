@@ -60,12 +60,6 @@ scanBtn.addEventListener("click", async () => {
       setStatus("No hay pestaña activa válida.");
       return;
     }
-    const currentUrl = tab.url || "";
-    if (currentUrl.startsWith("chrome://") || currentUrl.startsWith("chrome-extension://") || currentUrl.startsWith("about:")) {
-      setStatus("Esta pestaña está protegida por Chrome. Abre una página web normal (ej: onlyfans.com) y vuelve a escanear.");
-      return;
-    }
-
     const response = await sendToTab(tab.id, { type: "SCAN_MEDIA" });
     if (!response?.ok) {
       setStatus(`Error en escaneo: ${response?.error || "desconocido"}`);
@@ -75,11 +69,7 @@ scanBtn.addEventListener("click", async () => {
     currentMedia = Array.isArray(response.media) ? response.media : [];
     renderResults();
     downloadAllBtn.disabled = currentMedia.length === 0;
-    if (currentMedia.length === 0) {
-      setStatus("No se detectaron medios en esta página. Prueba dentro del perfil/feed con contenido cargado.");
-    } else {
-      setStatus(`Detectados ${currentMedia.length} medios.`);
-    }
+    setStatus(`Detectados ${currentMedia.length} medios.`);
   } catch (error) {
     setStatus(`Error: ${error instanceof Error ? error.message : String(error)}`);
   }
