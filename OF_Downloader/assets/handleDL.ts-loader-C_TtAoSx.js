@@ -1,1 +1,0 @@
-(function(){"use strict";const n=performance.now();(async()=>{const{onExecute:e}=await import(chrome.runtime.getURL("assets/handleDL.ts-DB2NYKhI.js"));e==null||e({perf:{injectTime:n,loadTime:performance.now()-n}})})().catch(console.error)})();
